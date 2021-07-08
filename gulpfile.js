@@ -3,9 +3,9 @@ let gulp = require("gulp");
 let autoprefixer = require('gulp-autoprefixer');
 let sass = require('gulp-sass');
 let pug = require('gulp-pug');
-// let sourcemaps = require('gulp-sourcemaps');
+let sourcemaps = require('gulp-sourcemaps');
 let zip = require('gulp-zip');
-let imagemin = require('gulp-imagemin');
+let image = require('gulp-image');
 
 
 // HTML Task
@@ -18,19 +18,19 @@ gulp.task("html", function () {
 // Css Task
 gulp.task("css", function () {
     return gulp.src("scss/*.scss")
-    // .pipe(sourcemaps.init())
+    .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}))
     .pipe(autoprefixer())
-    // .pipe(sourcemaps.write("."))
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("dist/css"))
 })
 
 // Compress Img
-gulp.task("img", function() {
-    return gulp.src('images/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/img'))
-})
+gulp.task('img', function () {
+    gulp.src('img/*')
+        .pipe(image())
+        .pipe(gulp.dest('dist/images'));
+});
 
 // Compress Files
 gulp.task("compress", function () {
@@ -43,6 +43,6 @@ gulp.task("compress", function () {
 gulp.task("watch" , function () {
     gulp.watch("pug/**/*.pug",  gulp.series('html'))
     gulp.watch("scss/**/*.scss",  gulp.series('css'))
-    gulp.watch("images/**/*",  gulp.series('img'))
+    gulp.watch("img/*",  gulp.series('img'))
     // gulp.watch("dist/**/*.*",  gulp.series('compress'))
 })
