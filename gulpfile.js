@@ -11,8 +11,8 @@ let image = require('gulp-image');
 // HTML Task
 gulp.task("html", function () {
     return gulp.src("pug/*.pug")
-    .pipe(pug())
-    .pipe(gulp.dest("dist"))
+    .pipe(pug({ pretty: true }))
+    .pipe(gulp.dest("./dist"))
 })
 
 // Css Task
@@ -26,16 +26,17 @@ gulp.task("css", function () {
 })
 
 // Compress Img
-gulp.task('img', function () {
+gulp.task('img', function (done) {
     gulp.src('img/*')
         .pipe(image())
         .pipe(gulp.dest('dist/images'));
+    done();
 });
 
 // Compress Files
 gulp.task("compress", function () {
     return gulp.src("dist/**/*.*")
-        .pipe(zip("website.zip"))
+        .pipe(zip("demo.zip"))
         .pipe(gulp.dest("."))
 })
 
@@ -44,5 +45,5 @@ gulp.task("watch" , function () {
     gulp.watch("pug/**/*.pug",  gulp.series('html'))
     gulp.watch("scss/**/*.scss",  gulp.series('css'))
     gulp.watch("img/*",  gulp.series('img'))
-    // gulp.watch("dist/**/*.*",  gulp.series('compress'))
+    gulp.watch("dist/**/*.*",  gulp.series('compress'))
 })
