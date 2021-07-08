@@ -1,33 +1,7 @@
 @import "helpers/functions";
-body {
-    background-color: #f00;
-    .test {
-        width: 50%;
-        padding: 30px;
-        color: #080;
-        background-color: #000;
-        .mark {
-            color: #421234;
-        }
-    }
-}
+@import "helpers/variables";
 
 
 
 
 
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (max-width: 1199.98px) {  }
-
-/* Large devices (desktops, 992px and up) */
-@media (max-width: 991.98px) {  }
-
-/* Medium devices (tablets, 768px and up) */
-@media (max-width: 767.98px) {  }
-
- /* Small devices (landscape phones, 576px and up) */
-@media (max-width: 575.98px) and (min-width: 374) {  }
-
- /* Small devices (Fold) */
-@media (max-width: 374.98px) and (min-width: 280px) {  }
